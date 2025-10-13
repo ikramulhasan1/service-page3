@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modern Service Page — MSNSoftech</title>
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+<!-- AOS Scroll Animations -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --primary:#0d6efd;
+  --secondary:#6610f2;
+  --text-dark:#212529;
+  --text-light:#fff;
+  --card-radius:16px;
+  --section-gap:4.5rem;
+  --bg-light:#f8f9fa;
+  --bg-card:#ffffff;
+  --shadow-card:rgba(12,38,79,0.06);
+}
+
+/* GENERAL */
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg-light);
+  color: var(--text-dark);
+  scroll-behavior: smooth;
+}
+h1,h2,h3,h4,h5,h6 { font-weight:700; }
+a { text-decoration:none; color: var(--primary);}
+a:hover { color: var(--secondary);}
+section { padding: var(--section-gap) 0; }
+.container-narrow { max-width: 1200px; margin: 0 auto; }
+
+/* HERO */
+.hero {
+  position: relative;
+  background: linear-gradient(135deg, rgba(13,110,253,0.08), rgba(102,16,242,0.05)), url('https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  border-radius: 20px;
+  overflow: hidden;
+  padding: 100px 20px;
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset:0;
+  background: linear-gradient(0deg, rgba(255,255,255,0.25), rgba(255,255,255,0.05));
+}
+.hero-content {
+  position: relative;
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.7);
+  border-radius: 20px;
+  padding: 3rem;
+}
+.hero h1 {
+  font-size: 3rem;
+  background: linear-gradient(90deg,var(--primary),var(--secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero p { font-size:1.2rem; }
+
+/* FEATURE CARDS */
+.feature-card {
+  background: var(--bg-card);
+  border-radius: var(--card-radius);
+  padding:2rem;
+  text-align:center;
+  box-shadow: 0 10px 40px var(--shadow-card);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.feature-card:hover {
+  transform: translateY(-10px) rotateX(2deg) rotateY(2deg);
+  box-shadow: 0 20px 60px rgba(12,38,79,0.12);
+}
+.feature-card i {
+  font-size:2.5rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+/* PROCESS TIMELINE */
+.process-step {
+  position: relative;
+  padding-left: 60px;
+  margin-bottom:2rem;
+}
+.process-step::before {
+  content: '';
+  position: absolute;
+  left: 28px;
+  top:0;
+  width:4px;
+  height:100%;
+  background: linear-gradient(180deg,var(--primary),var(--secondary));
+  border-radius:2px;
+}
+.process-icon {
+  position:absolute;
+  left:18px;
+  top:0;
+  width:20px;
+  height:20px;
+  background: var(--primary);
+  border-radius:50%;
+}
+
+/* PORTFOLIO GRID */
+.project-item {
+  position: relative;
+  overflow:hidden;
+  border-radius:16px;
+  transition: transform 0.5s ease;
+}
+.project-item img {
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  display:block;
+}
+.project-item:hover { transform: scale(1.05);}
+.project-overlay {
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,0.5);
+  opacity:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#fff;
+  font-size:1.2rem;
+  transition: opacity .35s ease;
+}
+.project-item:hover .project-overlay { opacity:1; }
+
+/* FLIP CARDS */
+.card-flip { perspective:1000px; }
+.card-flip-inner { transition: transform .6s; transform-style: preserve-3d; position:relative; }
+.card-flip:hover .card-flip-inner { transform: rotateY(180deg);}
+.card-flip-front, .card-flip-back {
+  backface-visibility: hidden;
+  position:absolute;
+  inset:0;
+  border-radius:16px;
+  padding:2rem;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+.card-flip-front { background: var(--bg-card); box-shadow:0 10px 40px var(--shadow-card);}
+.card-flip-back { background: linear-gradient(180deg,var(--primary),var(--secondary)); color:#fff; transform: rotateY(180deg); }
+
+/* RADIAL COUNTERS */
+.radial-counter { position: relative; width:120px; height:120px; margin:0 auto; }
+.radial-counter svg { transform: rotate(-90deg); width:100%; height:100%; }
+.radial-counter .circle-bg { fill:none; stroke:#eee; stroke-width:4; }
+.radial-counter .circle { fill:none; stroke: var(--primary); stroke-width:4; stroke-dasharray:100; stroke-dashoffset:100; transition: stroke-dashoffset .8s ease; }
+.radial-counter .number { position:absolute; inset:0; display:flex; justify-content:center; align-items:center; font-size:1.5rem; font-weight:700; }
+
+/* TESTIMONIALS */
+.testimonial-card { background: var(--bg-card); padding:2rem; border-radius:16px; box-shadow:0 10px 40px var(--shadow-card); text-align:center; }
+
+/* CTA PARALLAX */
+.parallax-cta {
+  position:relative;
+  background: url('https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+  background-attachment: fixed;
+  border-radius:20px;
+  color:#fff;
+  padding:60px 20px;
+  text-align:center;
+}
+.parallax-cta::after {
+  content:""; position:absolute; inset:0; background: rgba(13,110,253,0.4); border-radius:20px;
+}
+.parallax-cta .content { position:relative; z-index:2; }
+
+/* BUTTONS */
+.btn-primary { background: var(--primary); border-color: var(--primary);}
+.btn-primary:hover { background: var(--secondary); border-color: var(--secondary); }
+
+/* MEDIA */
+@media (max-width:767px){
+  .hero h1 { font-size:2rem; }
+  .project-item img { height:180px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm py-3">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">MSNSoftech</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero mb-5">
+  <div class="hero-content text-center mx-auto" style="max-width:800px;">
+    <h1 data-aos="fade-up">Modern Web Development & Digital Services</h1>
+    <p class="lead mt-3" data-aos="fade-up" data-aos-delay="100">We build sleek, modern websites and digital solutions that drive business growth.</p>
+    <a href="#contact" class="btn btn-primary btn-lg mt-4" data-aos="fade-up" data-aos-delay="200">Get Started</a>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="container-narrow" id="features">
+  <div class="text-center mb-5">
+    <h2 class="section-title" data-aos="fade-up">Our Services</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Comprehensive solutions for web & digital growth</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-4" data-aos="fade-up">
+      <div class="feature-card">
+        <i class="bi bi-laptop"></i>
+        <h5 class="mt-3">Web Development</h5>
+        <p>Modern responsive websites built with the latest technologies.</p>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="feature-card">
+        <i class="bi bi-phone"></i>
+        <h5 class="mt-3">Mobile Apps</h5>
+        <p>User-friendly mobile apps for iOS and Android platforms.</p>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+      <div class="feature-card">
+        <i class="bi bi-brush"></i>
+        <h5 class="mt-3">UI/UX Design</h5>
+        <p>Beautiful and functional designs that enhance user experience.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- More sections like PROCESS, PORTFOLIO, FLIP CARDS, RADIAL COUNTERS, TESTIMONIALS, PARALLAX CTA would follow the same style -->
+<!-- PROCESS TIMELINE -->
+<section class="container-narrow" id="process">
+  <div class="text-center mb-5">
+    <h2 class="section-title" data-aos="fade-up">Our Process</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Step-by-step approach to deliver excellence</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-4" data-aos="fade-up">
+      <div class="process-step p-4 bg-white rounded shadow-sm">
+        <div class="process-icon"></div>
+        <h5>Planning</h5>
+        <p>We analyze your requirements and plan the solution meticulously.</p>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="process-step p-4 bg-white rounded shadow-sm">
+        <div class="process-icon"></div>
+        <h5>Design</h5>
+        <p>Creating modern, responsive UI/UX designs to delight users.</p>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+      <div class="process-step p-4 bg-white rounded shadow-sm">
+        <div class="process-icon"></div>
+        <h5>Development</h5>
+        <p>Implementing scalable, fast, and maintainable web solutions.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO GRID -->
+<section class="container-narrow" id="portfolio">
+  <div class="text-center mb-5">
+    <h2 class="section-title" data-aos="fade-up">Our Work</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Showcasing some of our recent projects</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-4" data-aos="fade-up">
+      <div class="project-item">
+        <img src="https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=600&q=80" alt="Project 1">
+        <div class="project-overlay">View Project</div>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="project-item">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Project 2">
+        <div class="project-overlay">View Project</div>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+      <div class="project-item">
+        <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=600&q=80" alt="Project 3">
+        <div class="project-overlay">View Project</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLIP CARDS / SOLUTIONS -->
+<section class="container-narrow" id="solutions">
+  <div class="text-center mb-5">
+    <h2 class="section-title" data-aos="fade-up">Our Solutions</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Creative solutions for modern businesses</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-4" data-aos="fade-up">
+      <div class="card-flip">
+        <div class="card-flip-inner">
+          <div class="card-flip-front">
+            <h5>Web Development</h5>
+          </div>
+          <div class="card-flip-back">
+            <p>Building fast, secure, and scalable websites with modern tech.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="card-flip">
+        <div class="card-flip-inner">
+          <div class="card-flip-front">
+            <h5>UI/UX Design</h5>
+          </div>
+          <div class="card-flip-back">
+            <p>Designing intuitive interfaces that improve user engagement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+      <div class="card-flip">
+        <div class="card-flip-inner">
+          <div class="card-flip-front">
+            <h5>Digital Marketing</h5>
+          </div>
+          <div class="card-flip-back">
+            <p>Creating campaigns that grow your business digitally.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RADIAL COUNTERS / STATS -->
+<section class="container-narrow text-center my-5" id="stats">
+  <div class="row g-4">
+    <div class="col-md-3" data-aos="fade-up">
+      <div class="radial-counter" data-target="120">
+        <svg viewBox="0 0 36 36">
+          <path class="circle-bg" d="M18 2.0845
+            a 15.9155 15.9155 0 0 1 0 31.831
+            a 15.9155 15.9155 0 0 1 0 -31.831"/>
+          <path class="circle" d="M18 2.0845
+            a 15.9155 15.9155 0 0 1 0 31.831
+            a 15.9155 15.9155 0 0 1 0 -31.831"/>
+        </svg>
+        <div class="number">0</div>
+        <p class="mt-2">Projects Completed</p>
+      </div>
+    </div>
+    <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+      <div class="radial-counter" data-target="75">
+        <svg viewBox="0 0 36 36">
+          <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+          <path class="circle" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+        </svg>
+        <div class="number">0</div>
+        <p class="mt-2">Happy Clients</p>
+      </div>
+    </div>
+    <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+      <div class="radial-counter" data-target="150">
+        <svg viewBox="0 0 36 36">
+          <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+          <path class="circle" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+        </svg>
+        <div class="number">0</div>
+        <p class="mt-2">Cups of Coffee</p>
+      </div>
+    </div>
+    <div class="col-md-3" data-aos="fade-up" data-aos-delay="300">
+      <div class="radial-counter" data-target="25">
+        <svg viewBox="0 0 36 36">
+          <path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+          <path class="circle" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+        </svg>
+        <div class="number">0</div>
+        <p class="mt-2">Awards Won</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="container-narrow" id="testimonials">
+  <div class="text-center mb-5">
+    <h2 class="section-title" data-aos="fade-up">Testimonials</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">What our clients say</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-4" data-aos="fade-up">
+      <div class="testimonial-card">
+        <p>"Excellent service and professional team! Highly recommended."</p>
+        <h6 class="mt-3">— John Doe</h6>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="testimonial-card">
+        <p>"They delivered exactly what we needed. Great UX and design."</p>
+        <h6 class="mt-3">— Jane Smith</h6>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+      <div class="testimonial-card">
+        <p>"Creative solutions with modern web technologies. Amazing!"</p>
+        <h6 class="mt-3">— Mike Lee</h6>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARALLAX CTA -->
+<section class="parallax-cta my-5">
+  <div class="content">
+    <h2 data-aos="fade-up">Ready to Start Your Project?</h2>
+    <p class="mb-4" data-aos="fade-up" data-aos-delay="100">Contact us today and let's bring your ideas to life!</p>
+    <a href="#contact" class="btn btn-primary btn-lg" data-aos="fade-up" data-aos-delay="200">Get In Touch</a>
+  </div>
+</section>
+<section class="container-narrow my-5" id="pricing">
+  <div class="text-center mb-5">
+    <h2 class="section-title" data-aos="fade-up">Pricing Plans</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Choose the best plan for your business</p>
+  </div>
+  <div class="d-flex justify-content-center mb-4">
+    <button class="btn btn-outline-primary me-2" id="monthlyBtn">Monthly</button>
+    <button class="btn btn-primary" id="yearlyBtn">Yearly</button>
+  </div>
+  <div class="row g-4" id="pricing-cards">
+    <div class="col-md-4" data-aos="fade-up">
+      <div class="feature-card text-center">
+        <h5>Basic</h5>
+        <h3 class="price" data-month="29" data-year="290">$29</h3>
+        <p>Perfect for small startups</p>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>5 Projects</li>
+          <li>10 GB Storage</li>
+          <li>Email Support</li>
+        </ul>
+        <a href="#" class="btn btn-primary">Get Started</a>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+      <div class="feature-card text-center border-primary border-2">
+        <span class="badge bg-primary position-absolute" style="top:15px;right:15px;">Popular</span>
+        <h5>Pro</h5>
+        <h3 class="price" data-month="59" data-year="590">$59</h3>
+        <p>For growing businesses</p>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>20 Projects</li>
+          <li>50 GB Storage</li>
+          <li>Priority Support</li>
+        </ul>
+        <a href="#" class="btn btn-primary">Get Started</a>
+      </div>
+    </div>
+    <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+      <div class="feature-card text-center">
+        <h5>Enterprise</h5>
+        <h3 class="price" data-month="99" data-year="990">$99</h3>
+        <p>For large enterprises</p>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>Unlimited Projects</li>
+          <li>200 GB Storage</li>
+          <li>Dedicated Support</li>
+        </ul>
+        <a href="#" class="btn btn-primary">Get Started</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="container-narrow my-5" id="faq">
+  <div class="text-center mb-5">
+    <h2 class="section-title" data-aos="fade-up">Frequently Asked Questions</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Answers to common questions</p>
+  </div>
+  <div class="accordion" id="faqAccordion">
+    <div class="accordion-item" data-aos="fade-up">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+          What technologies do you use?
+        </button>
+      </h2>
+      <div id="faq1" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">We use modern technologies like HTML5, CSS3, Bootstrap, JavaScript, React, and Laravel.</div>
+      </div>
+    </div>
+    <div class="accordion-item" data-aos="fade-up" data-aos-delay="100">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+          How long does a project take?
+        </button>
+      </h2>
+      <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">Project duration varies by scope, typically 2–8 weeks for standard websites.</div>
+      </div>
+    </div>
+    <div class="accordion-item" data-aos="fade-up" data-aos-delay="200">
+      <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+          Do you offer support after launch?
+        </button>
+      </h2>
+      <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+        <div class="accordion-body">Yes, we offer 30 days of free support and long-term maintenance packages.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="container-narrow my-5" id="team">
+  <div class="text-center mb-5">
+    <h2 class="section-title" data-aos="fade-up">Meet Our Team</h2>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Talented professionals behind our success</p>
+  </div>
+  <div class="row g-4">
+    <div class="col-md-3" data-aos="fade-up">
+      <div class="feature-card position-relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1603415526960-f7c5c6b556f6?auto=format&fit=crop&w=400&q=80" class="img-fluid rounded" alt="Team 1">
+        <div class="position-absolute inset-0 d-flex flex-column justify-content-center align-items-center text-white bg-primary bg-opacity-75 opacity-0 hover-opacity-100 transition">
+          <h6>John Doe</h6>
+          <small>Frontend Developer</small>
+          <div class="mt-2">
+            <a href="#" class="text-white mx-1"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="text-white mx-1"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+      <div class="feature-card position-relative overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1614289806542-01f7875f60ff?auto=format&fit=crop&w=400&q=80" class="img-fluid rounded" alt="Team 2">
+        <div class="position-absolute inset-0 d-flex flex-column justify-content-center align-items-center text-white bg-primary bg-opacity-75 opacity-0 hover-opacity-100 transition">
+          <h6>Jane Smith</h6>
+          <small>UI/UX Designer</small>
+          <div class="mt-2">
+            <a href="#" class="text-white mx-1"><i class="bi bi-twitter"></i></a>
+            <a href="#" class="text-white mx-1"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+<script>
+const monthlyBtn = document.getElementById('monthlyBtn');
+const yearlyBtn = document.getElementById('yearlyBtn');
+const prices = document.querySelectorAll('.price');
+
+monthlyBtn.addEventListener('click',()=>{
+  prices.forEach(p => p.textContent = '$' + p.getAttribute('data-month'));
+  monthlyBtn.classList.add('btn-primary'); monthlyBtn.classList.remove('btn-outline-primary');
+  yearlyBtn.classList.add('btn-outline-primary'); yearlyBtn.classList.remove('btn-primary');
+});
+yearlyBtn.addEventListener('click',()=>{
+  prices.forEach(p => p.textContent = '$' + p.getAttribute('data-year'));
+  yearlyBtn.classList.add('btn-primary'); yearlyBtn.classList.remove('btn-outline-primary');
+  monthlyBtn.classList.add('btn-outline-primary'); monthlyBtn.classList.remove('btn-primary');
+});
+</script>
+
+<script>
+  // Radial Counters Animation
+  const counters = document.querySelectorAll('.radial-counter');
+  const counterObserver = new IntersectionObserver(entries=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        const el = entry.target.querySelector('.number');
+        const circle = entry.target.querySelector('.circle');
+        const target = +entry.target.getAttribute('data-target');
+        let count = 0;
+        const interval = setInterval(()=>{
+          count += Math.ceil(target/120);
+          if(count >= target){ count = target; clearInterval(interval);}
+          el.textContent = count;
+          // Update circle stroke
+          let offset = 100 - (count/target)*100;
+          circle.style.strokeDashoffset = offset;
+        },15);
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.7});
+  counters.forEach(counter => counterObserver.observe(counter));
+</script>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+
+<script>
+AOS.init({ duration:700, once:true });
+</script>
+</body>
+</html>
